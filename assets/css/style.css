@@ -1,0 +1,39 @@
+* { 
+    background-color:rgb(203, 232, 246);
+}
+
+header h1 {
+background-color: rgb(159, 207, 255);
+width: 100%;
+padding: 20px;
+border-bottom: 1px solid black;
+}
+
+#weather-input {
+    
+}
+
+form label {
+    font-size: 26px;
+    
+}
+
+#city {
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+#submit {
+    font-size: 18px;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+}
+
+#submit:hover {
+    box-shadow: 0 0 5px;
+}
