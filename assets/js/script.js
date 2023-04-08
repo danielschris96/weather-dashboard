@@ -13,17 +13,12 @@ container2.style.visibility = "hidden";
 
 submitButton.addEventListener("submit", getWeather);
 
-
+    apiKey = '7b917ea8f42cc643cbf4f7763708048b';
 
 function getWeather(event) {
     event.preventDefault();
     var userSearch = document.getElementById("city").value;
     console.log(userSearch);
-   
-
-
-apiKey = '7b917ea8f42cc643cbf4f7763708048b';
-
 
   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + userSearch + '&limit=5&appid=' + apiKey)
   .then(response => response.json())
@@ -34,50 +29,41 @@ apiKey = '7b917ea8f42cc643cbf4f7763708048b';
     fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey + '&units=imperial')
   .then(response => response.json())
   .then(data => {console.log(data)
-  var temp = data.list[0].main.temp;
-  var tempRounded = temp.toFixed(2);
-  var wind = data.list[0].wind.speed;
-  var humidity = data.list[0].main.humidity;
-  var icon = data.list[0].weather[0].icon;
-  var date = data.list[0].dt_txt;
-  
-  console.log(temp);
-  console.log(data.city.name);
-  console.log(date);
-  cityName.textContent = data.city.name;
-  currentDate.textContent = date;
-  currentTemp.textContent = tempRounded;
-  currentWind.textContent = wind;
-  currentHumidity.textContent = humidity;
-  currentIcon.src = "http://openweathermap.org/img/w/" + icon + ".png";
 
-  container2.style.visibility = "visible";
+    container2.style.visibility = "visible";
 
-  var saveCity = document.createElement("button");
-  saveCity.textContent = data.city.name;
-  cityList.appendChild(saveCity);
-  saveCity.setAttribute("id", saveCity.value);
-//   cityList.addEventListener("click", getWeather2);
+    var saveCity = document.createElement("button");
+    saveCity.textContent = data.city.name;
+    cityList.appendChild(saveCity);
+    saveCity.setAttribute("id", saveCity.value);
 
-   for (var i = 7; i < 40; i += 8) {
+
+
+   for (var i of [0, 7, 15, 23, 31, 39]) {
     var tempI = data.list[i].main.temp;
-  var tempRoundedI = tempI.toFixed(2);
-  var windI = data.list[i].wind.speed;
-  var humidityI = data.list[i].main.humidity;
-  var iconI = data.list[i].weather[0].icon;
-  var dateI = data.list[i].dt_txt;
-  
-  
-  console.log(tempI);
-  console.log(data.city.name);
+    var tempRoundedI = tempI.toFixed(2);
+    var windI = data.list[i].wind.speed;
+    var humidityI = data.list[i].main.humidity;
+    var iconI = data.list[i].weather[0].icon;
+    var dateI = data.list[i].dt_txt;
+    
+    
+    console.log(tempI);
+    console.log(data.city.name);
 
- document.getElementById('city-name' + i).textContent = data.city.name;
- document.getElementById('date' + i).textContent = dateI;
- document.getElementById('icon' + i).src = "http://openweathermap.org/img/w/" + iconI + ".png";
- document.getElementById('temp' + i).textContent = tempRoundedI;
- document.getElementById('wind' + i).textContent = windI;
- document.getElementById('humidity' + i).textContent = humidityI;
- console.log(dateI);
+    document.getElementById('city-name' + i).textContent = data.city.name;
+    document.getElementById('date' + i).textContent = dateI;
+    document.getElementById('icon' + i).src = "http://openweathermap.org/img/w/" + iconI + ".png";
+    document.getElementById('temp' + i).textContent = tempRoundedI;
+    document.getElementById('wind' + i).textContent = windI;
+    document.getElementById('humidity' + i).textContent = humidityI;
+
+    localStorage.setItem("cityName" + i, data.city.name);
+    localStorage.setItem("date" + i, dateI);
+    localStorage.setItem("icon" + i, iconI);
+    localStorage.setItem("temp" + i, tempRoundedI);
+    localStorage.setItem("wind" + i, windI);
+    localStorage.setItem("humidity" + i, humidityI);
 
 }
 })
@@ -86,42 +72,3 @@ apiKey = '7b917ea8f42cc643cbf4f7763708048b';
   .catch(error => console.error(error));
 }
  
-// function getWeather2(event) {
-//     event.preventDefault();
-//     console.log(userSearch);
-   
-//     var userSearch = document.getElementById("city").value;
-
-// apiKey = '7b917ea8f42cc643cbf4f7763708048b';
-
-
-//   fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + userSearch + '&limit=5&appid=' + apiKey)
-//   .then(response => response.json())
-//   .then(data => {
-//    for (var i = 1; i < 6; i++) {
-//     var latitude = data[i].lat;
-//     var longitude = data[i].lon;
-//     fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey + '&units=imperial')
-//   .then(response => response.json())
-//   .then(data => {console.log(data)
-//   var tempI = data.list[i].main.temp;
-//   var tempRoundedI = tempI.toFixed(2);
-//   var windI = data.list[i].wind.speed;
-//   var humidityI = data.list[i].main.humidity;
-//   var iconI = data.list[i].weather[i].icon;
-  
-  
-//   console.log(tempI);
-//   console.log(data.city.name);
-//   cityName.textContent = data.city.name;
-
-//   currentTemp.textContent = tempRoundedI;
-//   currentWind.textContent = windI;
-//   currentHumidity.textContent = humidityI;
-//   currentIcon.src = "http://openweathermap.org/img/w/" + iconI + ".png";
-
-// })}
-// //   .catch(error => console.error(error));
-// //   })
-// //   .catch(error => console.error(error));
-// })}
