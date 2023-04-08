@@ -24,6 +24,7 @@ form label {
     border-radius: 3px;
     margin-bottom: 10px;
     background-color: white;
+    width: 232px;
 }
 
 #submit {
@@ -31,8 +32,8 @@ form label {
     border-radius: 3px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: rgb(159, 207, 255);;
-    width: 251px;
+    background-color: rgb(159, 207, 255);
+    width: 240px;
 }
 
 #submit:hover {
@@ -71,10 +72,11 @@ form label {
 
 #current-weather {
     border: 1px solid black;
-    width: 500px;
+    width: 400px;
     margin-left: 20px;
     height: fit-content;
     background-color: white;
+    border-radius: 3px;
 }
 
 h2 {
@@ -95,4 +97,6 @@ li {
     margin: 20px;
     border: 1px solid black;
     padding:5px;
+    border-radius: 3px;
+    background-color: white;
 }
