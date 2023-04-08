@@ -83,7 +83,7 @@ h2 {
 
 li {
     list-style-type: none;
-    margin: 10px;
+    margin: 5px;
 }
 
 #widget-container {
@@ -91,8 +91,8 @@ li {
     flex-wrap: wrap;
 }
 
-#widget-container span {
+#widget-container ul {
     margin: 20px;
     border: 1px solid black;
-    padding: 45px;
+    padding:5px;
 }
