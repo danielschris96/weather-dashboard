@@ -13,7 +13,7 @@ https://danielschris96.github.io/weather-dashboard/
 
 The search box is used to input a city. Once the city is found by OpenWeather, the weather for that city is displayed. For each city searched, a button under the search box with the city's name is created. When the button is clicked, it uses the weather data in the local storage to display that weather for the city.
 
-![Screenshot of webpage](./assets/images/page-screenshot.PNG)
+![Screenshot of webpage](./assets/images/page-screenshot.JPG)
 
 ## Credits
 
