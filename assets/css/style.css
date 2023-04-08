@@ -10,7 +10,7 @@ border-bottom: 1px solid black;
 }
 
 #weather-input {
-    
+    margin: 10px;
 }
 
 form label {
@@ -31,9 +31,67 @@ form label {
     border-radius: 3px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: white;
+    background-color: rgb(159, 207, 255);;
+    width: 251px;
 }
 
 #submit:hover {
     box-shadow: 0 0 5px;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+}
+
+#city-list {
+    display: flex;
+    flex-direction: column;
+}
+
+#city-list span {
+    border: 1px solid black;
+    width: 238px;
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+#city-list span:hover {
+    box-shadow: 0 0 5px;
+}
+
+#container2 {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#current-weather {
+    border: 1px solid black;
+    width: 500px;
+    margin-left: 20px;
+    height: fit-content;
+}
+
+h2 {
+    margin: 10px;
+}
+
+li {
+    list-style-type: none;
+    margin: 10px;
+}
+
+#widget-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#widget-container span {
+    margin: 20px;
+    border: 1px solid black;
+    padding: 45px;
 }
