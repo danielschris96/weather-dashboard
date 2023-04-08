@@ -8,12 +8,24 @@ var cityList = document.getElementById("city-list");
 var currentIcon = document.getElementById("current-icon");
 var currentDate = document.getElementById("current-date");
 var container2 = document.getElementById("container2");
+var storageCities = [];
 
 container2.style.visibility = "hidden";
+
 
 submitButton.addEventListener("submit", getWeather);
 
     apiKey = '7b917ea8f42cc643cbf4f7763708048b';
+
+    var storageCities = JSON.parse(localStorage.getItem('storageCities')) || [];
+    if (storageCities !== null) {
+        for (var i = 0; i < storageCities.length; i++) {
+          var saveCity = document.createElement("button");
+          saveCity.textContent = storageCities[i];
+          cityList.appendChild(saveCity);
+          saveCity.setAttribute("id", storageCities[i]);
+        }
+      }
 
 function getWeather(event) {
     event.preventDefault();
@@ -32,10 +44,18 @@ function getWeather(event) {
 
     container2.style.visibility = "visible";
 
+    
+
+    if (!document.getElementById(data.city.name)) {
     var saveCity = document.createElement("button");
     saveCity.textContent = data.city.name;
     cityList.appendChild(saveCity);
     saveCity.setAttribute("id", data.city.name);
+    storageCities.push(data.city.name)
+    localStorage.setItem('storageCities', JSON.stringify(storageCities));
+    }
+
+
 
     var weatherData = [];
 
@@ -85,6 +105,7 @@ cityList.addEventListener("click", function(event) {
 
 function pullWeather(cityStore) {
     var weatherData = JSON.parse(localStorage.getItem("weatherData-" + cityStore));
+    container2.style.visibility = "visible";
 
     for (var i = 0; i < weatherData.length; i++) {
         var date = weatherData[i].date;
