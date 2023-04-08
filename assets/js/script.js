@@ -39,7 +39,7 @@ function getWeather(event) {
     var userSearch = document.getElementById("city").value;
 
     // fetches the openweathermap data based on the user search
-  fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + userSearch + '&limit=5&appid=' + apiKey)
+  fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + userSearch + '&limit=5&appid=' + apiKey)
   .then(response => response.json())
   .then(data => {
     // retrieving the latitude and longitude data from the initial search to use in the 5 day weather forecast fetch
@@ -94,7 +94,7 @@ function getWeather(event) {
     // this prints our data to the html page
     document.getElementById('city-name' + i).textContent = data.city.name;
     document.getElementById('date' + i).textContent = dateI;
-    document.getElementById('icon' + i).src = "http://openweathermap.org/img/w/" + iconI + ".png";
+    document.getElementById('icon' + i).src = "https://openweathermap.org/img/w/" + iconI + ".png";
     document.getElementById('temp' + i).textContent = tempRoundedI;
     document.getElementById('wind' + i).textContent = windI;
     document.getElementById('humidity' + i).textContent = humidityI;
@@ -127,7 +127,7 @@ function pullWeather(cityStore) {
         // prints the data to its respective elements using classes meant for this function
         document.querySelector('.city-name' + i).textContent = name;
         document.querySelector('.date' + i).textContent = date;
-        document.querySelector('.icon' + i).src = "http://openweathermap.org/img/w/" + icon + ".png";
+        document.querySelector('.icon' + i).src = "https://openweathermap.org/img/w/" + icon + ".png";
         document.querySelector('.temp' + i).textContent = temp;
         document.querySelector('.wind' + i).textContent = wind;
         document.querySelector('.humidity' + i).textContent = humidity;    
