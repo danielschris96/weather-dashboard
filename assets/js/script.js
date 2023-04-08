@@ -35,9 +35,9 @@ function getWeather(event) {
     var saveCity = document.createElement("button");
     saveCity.textContent = data.city.name;
     cityList.appendChild(saveCity);
-    saveCity.setAttribute("id", saveCity.value);
+    saveCity.setAttribute("id", data.city.name);
 
-
+    var weatherData = [];
 
    for (var i of [0, 7, 15, 23, 31, 39]) {
     var tempI = data.list[i].main.temp;
@@ -46,6 +46,17 @@ function getWeather(event) {
     var humidityI = data.list[i].main.humidity;
     var iconI = data.list[i].weather[0].icon;
     var dateI = data.list[i].dt_txt;
+
+    var weatherObj = {
+        cityName: data.city.name,
+        date: dateI,
+        icon: iconI,
+        temp: tempRoundedI,
+        wind: windI,
+        humidity: humidityI
+    };
+
+    weatherData.push(weatherObj);
     
     
     console.log(tempI);
@@ -58,13 +69,7 @@ function getWeather(event) {
     document.getElementById('wind' + i).textContent = windI;
     document.getElementById('humidity' + i).textContent = humidityI;
 
-    localStorage.setItem("cityName" + i, data.city.name);
-    localStorage.setItem("date" + i, dateI);
-    localStorage.setItem("icon" + i, iconI);
-    localStorage.setItem("temp" + i, tempRoundedI);
-    localStorage.setItem("wind" + i, windI);
-    localStorage.setItem("humidity" + i, humidityI);
-
+    localStorage.setItem("weatherData-" + data.city.name, JSON.stringify(weatherData));
 }
 })
   .catch(error => console.error(error));
@@ -72,3 +77,31 @@ function getWeather(event) {
   .catch(error => console.error(error));
 }
  
+
+cityList.addEventListener("click", function(event) {
+    var cityStore = event.target.textContent;
+    pullWeather(cityStore);
+});
+
+function pullWeather(cityStore) {
+    var weatherData = JSON.parse(localStorage.getItem("weatherData-" + cityStore));
+
+    for (var i = 0; i < weatherData.length; i++) {
+        var date = weatherData[i].date;
+        var icon = weatherData[i].icon;
+        var temp = weatherData[i].temp;
+        var wind = weatherData[i].wind;
+        var humidity = weatherData[i].humidity;
+        var name = weatherData[i].cityName
+        console.log(wind);
+        console.log(name);
+        console.log(icon);
+       
+        document.querySelector('.city-name' + i).textContent = name;
+        document.querySelector('.date' + i).textContent = date;
+        document.querySelector('.icon' + i).src = "http://openweathermap.org/img/w/" + icon + ".png";
+        document.querySelector('.temp' + i).textContent = temp;
+        document.querySelector('.wind' + i).textContent = wind;
+        document.querySelector('.humidity' + i).textContent = humidity;    
+    }
+}
